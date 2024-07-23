@@ -7,7 +7,7 @@ export default function Layout({children}) {
     <div className='flex'>
 
         <Sidebar/>
-        <main className='ml-56 w-full'>
+        <main className='sm:ml-56 ml:0 w-full bg-slate-100 min-h-screen'>
           <Header/> 
           {children}
 

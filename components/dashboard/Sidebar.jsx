@@ -1,21 +1,20 @@
 "use client"
-import { BaggageClaim, ChevronLeft, Files, Home, PlusCircle, ShoppingBag, ShoppingCart, WalletCards } from 'lucide-react'
+import { BaggageClaim, ChevronLeft, Files, Home, ShoppingBag, ShoppingCart, WalletCards } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import CollapsibleLink from './CollapsibleLink';
+
 import SidebarDropdownLink from './SidebarDropdownLink';
 
 
 export default function Sidebar() {
     const inventoryLinks = [
         {
+            title:"Create New",
+            href:"/dashboard/inventory"
+        },
+        {
             title: "Items",
-            href: "/dashboard/inventory"
+            href: "/dashboard/inventory/items"
         },
         {
             title: "Categories",
@@ -35,47 +34,49 @@ export default function Sidebar() {
         },
         {
             title: "Inventory Adjustments",
-            href: "/dashboard/inventory/warehouse"
+            href: "/dashboard/inventory/adjustments"
             
         },
         {
             title: "Supplier",
-            href: "/dashboard/inventory/warehouse"
+            href: "/dashboard/inventory/suppliers"
             
         }
     ];
-    const salesLinks = [
-        {
-            title: "Customers",
-            href: "#"
-        },
-        {
-            title: "Sales Orders",
-            href: "#"
-        },
-        {
-            title: "Packages",
-            href: "#"
-        },
-        {
-            title: "Shipments",
-            href: "#"
-        },
-        {
-            title: "Invoices",
-            href: "#"
-        },
-        {
-            title: "Sales Recipts",
-            href: "#"
-        },
-        {
-            title: "Payment Received",
-            href: "#"
-        },
-    ];
+
+    // const salesLinks = [
+    //     {
+    //         title: "Customers",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Sales Orders",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Packages",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Shipments",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Invoices",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Sales Recipts",
+    //         href: "#"
+    //     },
+    //     {
+    //         title: "Payment Received",
+    //         href: "#"
+    //     },
+    // ];
+
     return (
-        <div className=' w-56 min-h-screen bg-slate-800 text-slate-50 fixed'>
+        <div className=' w-56 min-h-screen bg-slate-800 text-slate-50 fixed hidden sm:block'>
             {/* Top Part */}
             <div className='flex flex-col'>
                 <Link href="#" className='bg-gray-700 flex space-x-3 items-center px-3 py-2'>
@@ -97,20 +98,20 @@ export default function Sidebar() {
                     title="Inventory"
                     icon={BaggageClaim} />
 
-                <SidebarDropdownLink
+                {/* <SidebarDropdownLink
                     items={salesLinks}
                     title="Sales"
-                    icon={ShoppingBag} />
+                    icon={ShoppingBag} /> */}
 
-                <button className='flex items-center space-x-2 p-2'>
+                {/* <button className='flex items-center space-x-2 p-2'>
                     <WalletCards className='w-4 h-4' />
                     <span>Purchases</span>
-                </button>
+                </button> */}
 
-                <Link className='flex items-center space-x-2 p-2' href="#">
+                {/* <Link className='flex items-center space-x-2 p-2' href="#">
                     <Files className='w-4 h-4' />
                     <span>Reports</span>
-                </Link>
+                </Link> */}
 
             </nav>
 

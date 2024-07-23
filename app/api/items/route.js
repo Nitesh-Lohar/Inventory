@@ -1,3 +1,4 @@
+import Categories from "@/app/(back-end)/dashboard/inventory/categories/page";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -48,6 +49,10 @@ export async function GET(request){
       const items = await db.item.findMany({
           orderBy:{
               createdAt: 'desc', // 'asc' for ascending, 'desc' for descending
+          },
+          include:{
+            category:true, //returns all FIELDS for categories
+            // suppliers:true, //returns all supplioers FIELDS
           }
       });
       return NextResponse.json(items)
