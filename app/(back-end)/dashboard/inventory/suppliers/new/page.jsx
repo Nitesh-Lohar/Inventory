@@ -28,7 +28,7 @@ export default function NewSupplier() {
           
           <TextInput
             label={"Supplier Name"}
-            name="name"
+            name="title"
             register={register}
             errors={errors}
             className='w-full' />

@@ -3,31 +3,12 @@ import SelectInput from '@/components/FormInputs/SelectInput'
 import SubmitButton from '@/components/FormInputs/SubmitButton'
 import TextInput from '@/components/FormInputs/TextInput'
 import TextareaInput from '@/components/FormInputs/TextareaInput'
+import { makePostRequest } from '@/lib/apiRequest'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-export default function TranseferInventoryForm() {
-  const branches = [
-    {
-      label: "Branch A",
-      value: "maidfsdfdn"
-    },
-    {
-      label: "Branch B",
-      value: "dvxvc"
-    }
-  ]
+export default function TranseferInventoryForm({items,warehouses}) {
 
-  const items = [
-    {
-      label: "item A",
-      value: "maidfsdfdn"
-    },
-    {
-      label: "item B",
-      value: "dvxvc"
-    }
-  ]
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false)
   async function onSubmit(data) {
@@ -68,12 +49,12 @@ export default function TranseferInventoryForm() {
 <SelectInput name="givingWarehouseId"
         label="Select the Warehouse that give the stock"
         register={register} className='w-full'
-        options={branches} />
+        options={warehouses} />
       
       <SelectInput name="receivingWarehouseId"
         label="Select the Warehouse that will receive the stock"
         register={register} className='w-full'
-        options={branches} />
+        options={warehouses} />
 
       {/* description */}
       <TextareaInput

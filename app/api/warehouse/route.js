@@ -1,71 +1,51 @@
-// import db from "@/lib/db";
-// import { NextResponse } from "next/server";
-
-// export async function POST(request){
-//     try {
-//         const {title,location,type,description}=await request.json();
-//         // const warehouse={title,location,type, description};
-
-//         const warehouse= await db.warehouse.create({
-//             data:{
-//                 title,
-//                 location,
-//                 description,
-//                 warehouseType:type
-//             },
-//         });
-
-
-//         console.log(warehouse)
-//         return NextResponse.json(warehouse)
-//     } catch (error) {
-//         console.log(error)
-//         return NextResponse.json({
-//             error,
-//             message: "Failed To New Warehouse"
-//         },{
-//             status:500
-//         })
-        
-//     }
-// }
-
-
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(request){
     try {
-        const { title, location, type, description } = await request.json();
+       const { title, location, type, description } = await request.json();
 
-        console.log("Incoming data:", { title, location, type, description });
 
-        // Validate required fields
-        if (!title || !type) {
-            return NextResponse.json({
-                error: "Missing required fields",
-                message: "Title and type are required"
-            }, { status: 400 });
-        }
-
-        const warehouse = await db.warehouse.create({
-            data: {
+        const warehouse= await db.warehouse.create({
+            data:{
                 title,
-                location: location || null,
-                warehouseType: type,
-                description: description || null
+                location,
+                description,
+                warehouseType:type
             },
         });
 
-        console.log("Created warehouse:", warehouse);
-        return NextResponse.json(warehouse);
+
+        console.log(warehouse)
+        return NextResponse.json(warehouse)
     } catch (error) {
-        console.error("Error details:", error);
+        console.log(error)
         return NextResponse.json({
-            error: error.message,
-            message: "Failed To Create New Warehouse"
-        }, {
-            status: 500
+            error,
+            message: "Failed To New Warehouse"
+        },{
+            status:500
+        })
+        
+    }
+}
+
+export async function GET(request){
+    try {
+        const warehouse = await db.warehouse.findMany({
+            orderBy:{
+                createdAt: 'desc', // 'asc' for ascending, 'desc' for descending
+            }
         });
+        return NextResponse.json(warehouse)
+        
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message: "Failed To fetch Warehouse"
+        },{
+            status:500
+        }) 
     }
 }

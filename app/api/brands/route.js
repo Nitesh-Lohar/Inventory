@@ -22,3 +22,23 @@ export async function POST(request){
         
     }
 }
+
+export async function GET(request){
+    try {
+        const brands = await db.brand.findMany({
+            orderBy:{
+                createdAt: 'desc', // 'asc' for ascending, 'desc' for descending
+            }
+        });
+        return NextResponse.json(brands)
+        
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message: "Failed To fetch Brands"
+        },{
+            status:500
+        }) 
+    }
+}

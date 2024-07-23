@@ -32,3 +32,23 @@ export async function POST(request){
     }
 }
 
+export async function GET(request){
+    try {
+        const categories = await db.category.findMany({
+            orderBy:{
+                createdAt: 'desc', // 'asc' for ascending, 'desc' for descending
+            }
+        });
+        return NextResponse.json(categories)
+        
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message: "Failed To fetch Categories"
+        },{
+            status:500
+        }) 
+    }
+}
+

@@ -8,16 +8,17 @@ import { makePostRequest } from '@/lib/apiRequest'
 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { Value } from 'sass'
 
 export default function NewWarehouse() {
   const selectOptions =[
     {
-      label:"Main",
-      value:"main"
+      Value:"Main",
+      name:"main"
     },
     {
-      label:"Branch",
-      value:"branch"
+      Value:"Branch",
+      name:"branch"
     }
   ]
   const { register, handleSubmit, reset, formState: { errors } } = useForm();

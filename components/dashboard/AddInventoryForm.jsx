@@ -7,28 +7,9 @@ import { makePostRequest } from '@/lib/apiRequest'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-export default function AddInventoryForm() {
-  const branches = [
-    {
-      label: "Branch A",
-      value: "maidfsdfdn"
-    },
-    {
-      label: "Branch B",
-      value: "dvxvc"
-    }
-  ]
+export default function AddInventoryForm({items,warehouses}) {
 
-  const items = [
-    {
-      label: "item A",
-      value: "f"
-    },
-    {
-      label: "item B",
-      value: "ff"
-    }
-  ]
+
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false)
   async function onSubmit(data) {
@@ -46,7 +27,6 @@ export default function AddInventoryForm() {
       <TextInput
         label="Reference Number"
         name="referenceNumber"
-        type='number'
         register={register}
         errors={errors}
         className='w-full'
@@ -70,7 +50,7 @@ export default function AddInventoryForm() {
         label="Select the Warehouse that will receive the stock"
         register={register}
         className='w-full'
-        options={branches} />
+        options={warehouses} />
 
       {/* description */}
       <TextareaInput
