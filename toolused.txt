@@ -1,0 +1,13 @@
+React JS
+Next JS
+
+Tailwind CSS
+lucide.dev for icons
+
+
+
+npm install -D @tailwindcss/forms
+npm install lucide-react
+shadncn ui library
+
+UploadThing
