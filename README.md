@@ -8,7 +8,7 @@ create .env file and add this code:
 ```
 DATABASE_URL="<url>"
 ```
-
+Then, run this command in your Project Directory
 ```bash
 npm run dev
 ```
