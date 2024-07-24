@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 
-export default function NewCategories({initialData={}, isUpdate=true}) {
+export default function NewCategories({initialData={}, isUpdate=false}) {
   const router=useRouter()
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues:initialData,
@@ -35,7 +35,7 @@ export default function NewCategories({initialData={}, isUpdate=true}) {
   return (
     <div>
       {/* Header */}
-      <FormHeader title={isUpdate?"Update Brand":"New Category"} href="/dashboard/inventory/categories" />
+      <FormHeader title={isUpdate?"Update Category":"New Category"} href="/dashboard/inventory/categories" />
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -54,7 +54,7 @@ export default function NewCategories({initialData={}, isUpdate=true}) {
 
 
         </div>
-        <SubmitButton isLoading={loading} title={isUpdate?"Update Brand":"New Category"} />
+        <SubmitButton isLoading={loading} title={isUpdate?"Update Category":"New Category"} />
 
       </form>
     </div>

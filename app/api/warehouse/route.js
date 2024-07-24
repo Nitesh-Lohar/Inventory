@@ -49,3 +49,24 @@ export async function GET(request){
         }) 
     }
 }
+
+export async function DELETE(request){
+    try {
+        const id=request.nextUrl.searchParams.get("id");
+        const deleteWarehouse = await db.warehouse.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteWarehouse);
+        
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({
+            error,
+            message: "Failed to delete Warehouse"
+        },{
+            status:500
+        }) 
+    }
+  }

@@ -93,7 +93,7 @@ export default function Sidebar({showSidebar,setShowSidebar}) {
 
             {/* Links */}
             <nav className='flex flex-col px-3 py-7'>
-                <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-md' href="/dashboard/home">
+                <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-md' href="/dashboard/home/overview">
                     <Home className='w-4 h-4' />
                     <span>Home</span>
                 </Link>
