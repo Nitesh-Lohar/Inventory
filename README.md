@@ -1,14 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Getting Started
 
-## Getting Started
-
-First, run the development server:
-
-create .env file and add this code:
+## Step 1: Run Command:
+```bash
+npm install
 ```
-DATABASE_URL="<url>"
+
+## Step 2: Create and Login to your account at https://uploadthing.com and get your App Secret Key and Id.
+
+## Step 3: Create ".env" file and paste this code and replace with your Credentials:
+```.env
+UPLOADTHING_SECRET=<Your-Secret-Key>
+UPLOADTHING_APP_ID=<Your-App-Id>
+
+DATABASE_URL=<DB-URL>
 ```
-Then, run this command in your Project Directory
+## Step 4:
+# Generate the prisma client instance
+```bash
+npx prisma generate
+```
+# Push the Models to the Datasea
+```bash
+npx prisma db push
+```
+# run the studio
+```bash
+npx prisma studio
+```
+## Step 5: Finally, run this command in your Project Directory
 ```bash
 npm run dev
 ```

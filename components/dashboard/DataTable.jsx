@@ -2,7 +2,7 @@ import { Pencil, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 
-export default function DataTable({ data, columns }) {
+export default function DataTable({ data=[], columns=[],resourceTitle }) {
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -34,7 +34,7 @@ export default function DataTable({ data, columns }) {
                                     )
                                 })}
                                 <td className="px-6 py-4 text-right flex items-center space-x-4">
-                                    <Link href="#" className='font-medium text-blue-600 flex items-center space-x-1'>
+                                    <Link href={`/dashboard/inventory/${resourceTitle}/update/${item.id}`} className='font-medium text-blue-600 flex items-center space-x-1'>
                                         <Pencil className='w-4 h-4' />
                                         <span>Edit</span>
                                     </Link>
