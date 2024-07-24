@@ -25,23 +25,40 @@ export async function GET(request, { params: { id } }) {
 
 export async function PUT(request, { params: { id } }) {
   try {
-    const { title } = await request.json();
-    const brand = await db.brand.update({
+    const itemData = await request.json();
+    const item = await db.item.update({
       where: {
         id,
       },
       data: {
-        title
+        title: itemData.title,
+        categoryId: itemData.categoryId,
+        sku: itemData.sku,
+        barcode: itemData.barcode,
+        quantity: itemData.quantity,
+        unitId: itemData.unitId,
+        brandId: itemData.brandId,
+        supplierId: itemData.supplierId,
+        buyingPrice: parseFloat(itemData.buyingPrice),
+        sellingPrice: parseFloat(itemData.sellingPrice),
+        reOrderPoint: parseInt(itemData.reOrderPoint),
+        warehouseId: itemData.warehouseId,
+        imageUrl: itemData.imageUrl,
+        weight: parseFloat(itemData.weight),
+        dimensions: itemData.dimensions,
+        taxRate: parseFloat(itemData.taxRate),
+        description: itemData.description,
+        notes: itemData.notes,
       },
     });
-    console.log(brand);
-    return NextResponse.json(brand);
+    console.log(item);
+    return NextResponse.json(item);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
         error,
-        message: "Failed To Update Brand",
+        message: "Failed To Update item",
       },
       {
         status: 500,

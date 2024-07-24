@@ -5,27 +5,42 @@ import SubmitButton from '@/components/FormInputs/SubmitButton'
 import TextInput from '@/components/FormInputs/TextInput'
 import TextareaInput from '@/components/FormInputs/TextareaInput'
 import FormHeader from '@/components/dashboard/FormHeader'
-import { makePostRequest } from '@/lib/apiRequest'
+import { makePostRequest, makePutRequest } from '@/lib/apiRequest'
 import { getData } from '@/lib/getData'
 import { UploadButton, UploadDropzone } from '@/lib/uploadthing'
 import { Pencil, Plus, X } from 'lucide-react'
+import { redirect } from 'next/dist/server/api-utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-export default function CreateItemForm({ brands, warehouses, suppliers, unit, categories }) {
-    const [imageUrl, setImageUrl] = useState("")
+export default function CreateItemForm({ brands, warehouses, suppliers, unit, categories,initialData={}, isUpdate=false }) {
+    const [imageUrl, setImageUrl] = useState(initialData.imageUrl)
+    const router=useRouter();
 
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({defaultValues:initialData});
     const [loading, setLoading] = useState(false)
+
+    function redirect(){
+        router.push("/dashboard/inventory/items")
+    }
 
     async function onSubmit(data) {
         data.imageUrl = imageUrl
         console.log(data)
-        makePostRequest(setLoading, "/api/items", data, "Item", reset)
+        if(isUpdate){
+            makePutRequest(setLoading,`/api/items/${initialData.id}`, data, "Item",redirect,reset)
+
+        }else{
+            makePostRequest(setLoading, "/api/items", data, "Item", reset)
         setImageUrl("")
+
+        }
+        
 
     }
 
@@ -160,7 +175,7 @@ export default function CreateItemForm({ brands, warehouses, suppliers, unit, ca
                 <ImageInput label="Item Image" imageUrl={imageUrl} setImageUrl={setImageUrl} />
 
             </div>
-            <SubmitButton isLoading={loading} title="Item" />
+            <SubmitButton isLoading={loading} title={isUpdate?"Update Item":"New Item"} />
 
         </form>
     )

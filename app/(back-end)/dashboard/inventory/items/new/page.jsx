@@ -2,7 +2,7 @@ import CreateItemForm from '@/components/dashboard/CreateItemForm'
 import FormHeader from '@/components/dashboard/FormHeader'
 import { getData } from '@/lib/getData'
 
-export default async function NewItem() {
+export default async function NewItem({initialData={}, isUpdate=false}) {
   const categoriesData =  getData('categories');
   const brandsData =  getData('brands');
   const warehousesData =  getData('warehouse');
@@ -16,9 +16,17 @@ export default async function NewItem() {
   return (
     <div>
       {/* Header */}
-      <FormHeader title="New Item" href="/dashboard/inventory/items" />
+      <FormHeader title={isUpdate?"Update Item":"New Item"} href="/dashboard/inventory/items" />
 
-      <CreateItemForm categories={categories} unit={unit} brands={brands} suppliers={suppliers} warehouses={warehouses} />
+      <CreateItemForm 
+      categories={categories}
+      unit={unit}
+      brands={brands}
+      suppliers={suppliers}
+      warehouses={warehouses}
+      initialData={initialData}
+      isUpdate={true}
+      />
 
     </div>
   )

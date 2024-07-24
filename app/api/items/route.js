@@ -52,7 +52,7 @@ export async function GET(request){
           },
           include:{
             category:true, //returns all FIELDS for categories
-            // suppliers:true, //returns all supplioers FIELDS
+            supplier:true, //returns all supplioers FIELDS
           }
       });
       return NextResponse.json(items)
