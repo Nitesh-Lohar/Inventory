@@ -5,11 +5,12 @@ import Warehouse from '../../warehouse/page'
 export default async function NewAdjustments() {
 const itemsData = getData("items")
 const warehousesData = getData("warehouse")
+const suppliersData = getData("suppliers")
 
-const [items, warehouse]=await Promise.all([itemsData, warehousesData])
+const [items, warehouse, suppliers]=await Promise.all([itemsData, warehousesData, suppliersData])
 console.log(warehouse)
   return (
-    <AdjustmentForm items={items} warehouse={warehouse}/> 
+    <AdjustmentForm items={items} suppliers={suppliers} warehouse={warehouse} /> 
     
   )
 }

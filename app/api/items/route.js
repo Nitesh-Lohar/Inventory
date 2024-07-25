@@ -5,6 +5,29 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     const itemData = await request.json();
+
+    // Get the Warehouse
+    const warehouse=await db.warehouse.findUnique({
+      where:{
+        id:itemData.warehouseId
+      }
+    })
+
+    // current stock
+    const currentWarehouseStock=warehouse.stockQty
+    const newStockQty = parseInt(currentWarehouseStock) + parseInt(itemData.qty)
+
+    // updated stock
+    const updatedWarehouse=await db.warehouse.update({
+      where:{
+        id:itemData.warehouseId
+      },
+      data:{
+        stockQty:newStockQty
+      }
+    })
+
+
     const item = await db.item.create({
       data: {
         title: itemData.title,
@@ -52,7 +75,9 @@ export async function GET(request){
           },
           include:{
             category:true, //returns all FIELDS for categories
-            supplier:true, //returns all supplioers FIELDS
+            // supplier:true, //returns all supplioers FIELDS
+            warehouse:true, //returns all supplioers FIELDS
+
           }
       });
       return NextResponse.json(items)

@@ -14,20 +14,23 @@ UPLOADTHING_APP_ID=<Your-App-Id>
 
 DATABASE_URL=<DB-URL>
 ```
+
 #### Step 4:
 > Generate the prisma client instance
 ```bash
-npx prisma generat
+npx prisma generate
 ``` 
 
 > Push the Models to the Datasea
 ```bash
 npx prisma db push
 ```
+
 > Run the studio
 ```bash
 npx prisma studio
 ```
+
 #### Step 5: Finally, run this command in your Project Directory
 ```bash
 npm run dev

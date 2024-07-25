@@ -7,7 +7,7 @@ import { Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 
 
-export default function AdjustmentForm({items, warehouse}) {
+export default function AdjustmentForm({items, warehouse, suppliers}) {
   const tabs=[
     {
       title:"Add Stock",
@@ -51,7 +51,7 @@ export default function AdjustmentForm({items, warehouse}) {
         
       </div>
 
-      {activeForm === "add" ? <AddInventoryForm items={items} warehouses={warehouse}/>
+      {activeForm === "add" ? <AddInventoryForm suppliers={suppliers} items={items} warehouses={warehouse}/>
       : <TranseferInventoryForm items={items} warehouses={warehouse} />}
 
     </div>

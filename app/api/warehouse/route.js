@@ -56,7 +56,10 @@ export async function DELETE(request){
         const deleteWarehouse = await db.warehouse.delete({
             where:{
                 id
-            }
+            },
+            // include:{
+            //     item:true
+            // }
         })
         return NextResponse.json(deleteWarehouse);
         
