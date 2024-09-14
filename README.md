@@ -7,7 +7,7 @@ npm install
 
 #### Step 2: Create and Login to your account at https://uploadthing.com and get your App Secret Key and Id.
 
-#### Step 3: Create ***.env*** file and paste this code and replace with your Credentials:
+#### Step 3: Create **.env** file and paste this code and replace with your Credentials:
 ```.env
 UPLOADTHING_SECRET=<Your-Secret-Key>
 UPLOADTHING_APP_ID=<Your-App-Id>
