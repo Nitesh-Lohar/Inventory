@@ -4,50 +4,61 @@ import React from 'react'
 import SalesActivityCard from './SalesActivityCard';
 import InventorySummaryCard from './InventorySummaryCard';
 import FixedHeader from './FixedHeader';
+import { getData } from '@/lib/getData';
 
-export default function SalesOverview() {
+export default async function SalesOverview() {
+    const categoriesData = getData("categories");
+    const itemsData = getData("items");
+    const warehousesData = getData("warehouse");
+    const suppliersData = getData("suppliers");
+
+    const [categories,items,warehouses,suppliers]=await
+    Promise.all([
+        categoriesData,
+        itemsData,
+        warehousesData,
+        suppliersData
+    ])
+
+    const inventorySummary = warehouses.map((item, i) =>{
+        return {
+            title: item.title,
+            number: item.stockQty,
+        };
+    })
+
     const salesActivity = [
         {
-            title: "To be Packed",
-            number: 0,
+            title: "categories",
+            number: categories.length,
             unit: "Qty",
-            href: "#",
+            href: "/dashboard/inventory/categories",
             color: "text-red-600"
         },
         {
-            title: "To be Shipped",
-            number: 0,
+            title: "Items",
+            number: items.length,
             unit: "Pkgs",
-            href: "#",
+            href: "/dashboard/inventory/items",
             color: "text-blue-600"
         },
         {
-            title: "To be Delivered",
-            number: 0,
+            title: "warehouses",
+            number: warehouses.length,
             unit: "Pkgs",
-            href: "#",
+            href: "/dashboard/inventory/warehouse",
             color: "text-green-600"
         },
         {
-            title: "To be Invoiced",
-            number: 0,
+            title: "Suppliers",
+            number: suppliers.length,
             unit: "Qty",
-            href: "#",
+            href: "/dashboard/inventory/suppliers",
             color: "text-yellow-600"
         },
         
     ];
 
-    const inventorySummary =[
-        {
-            title: "Quantity in Hand",
-            number: 10,
-        },
-        {
-            title: "Quantity to be recived",
-            number: 0,
-        },
-    ];
 
     return (
         <div className='bg-blue-50 border-b border-slate-300 p-8 grid grid-cols-12 gap-4'>
